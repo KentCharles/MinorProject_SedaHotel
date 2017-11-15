@@ -1,4 +1,36 @@
 <!DOCTYPE html>
+
+<?php
+session_start();
+include('config.php');
+$errors = array();
+
+    if (isset($_POST['login'])) {
+        
+        $username = trim($_POST['username']);
+        $password = md5($_POST['password']);
+        
+        
+        $sql = "SELECT * FROM accounts WHERE username = '$username' AND password = '$password'";
+        $result = mysqli_query($link, $sql);
+        $data = mysqli_fetch_assoc($result);
+    
+        if(empty($errors)) {
+            
+            if($username == $data['username'] && $password == $data['password']) {
+                
+                $_SESSION["id"] = $data['id'];
+                header("location: guest.php");
+            }else {
+            
+                $errors["match_form"] = "Username/Password do not match";
+            }
+        }
+        mysqli_close($link);
+    }
+?>
+?>
+
 <html>
     <head>
 	<title>Seda Hotel</title>
@@ -10,6 +42,14 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
+        <!-- UIkit CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.34/css/uikit.min.css" />
+
+        <!-- UIkit JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.34/js/uikit.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.34/js/uikit-icons.min.js"></script>
+
 
         <script>
             $(document).ready(function(){
@@ -90,63 +130,37 @@
         </div>
         <!-- -----------------End of Carousel------------------- -->
         
-        <div id="MainContainer">
+        <div id="MainContainer" >
 
             <div id="Header">
                   
                     <div id="NavBar">
-                        <ul>
-                        <li><a id="nav" href="#contact">Contact</a></li>
-                        <li><a id="nav" href="#reserve">Book</a></li>
-                        <li><a id="nav" href="#about">About</a></li>
-                        <li><a id="nav" href="#home">Home</a></li>
-                        </ul> 
-                        
                         </div>    
                         <div id="logo"><img src="img/logo2.png" width="70px" hieght="auto"></div>                
                         </div>
                     </div>   
 
         
-            <a id="homebg"></a>
-                    <div id="reservebg">
-                        <br><br><br>
-                        
-                        <center>
-                            <h3 ><span><b>EXPERIENCE A GOOD  STAY, ENJOY FANTASTIC OFFERS </b></span></h3>
-                            
-                        <h4><span>Find our friendly welcoming reception</span></h4><br>
-                        </center>
-                        
-                        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-                    </div>
+            <a id="login"></a>
         
-        
-            <a id="about"></a>
                     <div id="aboutbg">
+                    <div style="width:270px; margin:0 auto; margin-top: 100px; margin-bottom: 100px;">   
                         
-                        <div id="aboutparagraph">
+                        <form action="index.php" method="post">
+                            <div id="#aboutparagraph">
+                           
+                            Username:<br><input type="text" name="username" id = "uname" class="form-control" required/><br  />
+                            Password:<br><input type="password" name="password" id="password" class="form-control" required/><br  />
+                            <input type="submit" name="login" id ="btn-login" value="Sign-in" class="form-control" required  />
+                            <div><center>
+                                <p style="margin-top: 10px;"> Not a member? <a href="register.php">Register here</a></p>
+                                </center>
+                            </div>  
                             
-                            <h1> About Seda Hotel</h1>
-                            <p> Seda Abreeza offers 186 guestrooms for discerning travelers searching for the best hotels in Davao City, Southern Mindanao Island’s hub for commerce, tourism and industry. Located just across Abreeza Mall, the hotel ushers guests to a world of unparalleled comfort and convenience, and reflects the city’s progress with cutting-edge features that include an e-lounge with a bank of iMacs at the lobby and complimentary Wi-Fi throughout the premises.<br><br>
-
-                            Seda Abreeza’s interiors are sleek, clean and elegant, showcasing commissioned pieces from esteemed Philippine artists. Design accents also feature regional arts and crafts that are gaining an enviable niche in the fashion and interior design industry worldwide.<br><br>
-
-                            Seda Abreeza is an easy 20-minute drive to the Davao International Airport. Its location enables convenient access to various tourist attractions such as the Philippine Eagle breeding camp, white water rafting, and one of the country's longest zip lines. It is also just an hour to the port from where boats depart for Samal Island’s white sand beaches and diving spots, and a few hours away to the Philippines’ highest peak, Mt. Apo.<br><br>
-                            
-                            For room reservations, <a href="#reserve">click to check availability and prices.</a>
-                            </p>
-                            
-                        </div>
-                        
-                        
-                        <br><br><br><br><br><br><br><br><br>
-
-                        </div>
-
-   
-
+                            </div>
+                        </form> 
+                    </div>
+                    </div>
 	</body>
 
 
