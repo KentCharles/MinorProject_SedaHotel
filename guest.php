@@ -1,35 +1,8 @@
 <!DOCTYPE html>
 
 <?php
-session_start();
-include('config.php');
-$errors = array();
-
-    if (isset($_POST['login'])) {
-        
-        $username = trim($_POST['username']);
-        $password = md5($_POST['password']);
-        
-        $_SESSION['username'] = $username;
-        
-        $sql = "SELECT * FROM accounts WHERE username = '$username' AND password = '$password'";
-        $result = mysqli_query($link, $sql);
-        $data = mysqli_fetch_assoc($result);
-    
-        if(empty($errors)) {
-            
-            if($username == $data['username'] && $password == $data['password']) {
-                
-                $_SESSION["id"] = $data['id'];
-                header("location: guest.php");
-            }else {
-            
-                $errors["match_form"] = "Username/Password do not match";
-            }
-        }
-        mysqli_close($link);
-    }
-
+    session_start();
+    $username = $_SESSION['username'];
 ?>
 
 <html>
@@ -136,41 +109,21 @@ $errors = array();
             <div id="Header">
                   
                     <div id="NavBar">
-                        
                         <ul>
-                        <li><a id="nav" href="register.php">Register</a></li>
-                        <li><a id="nav" href="#login">Log in</a></li>
+                        <li style="color: antiquewhite; width: 160px;"><b>Welcome, <?php echo $username ?>!</b></li>
+                        <li><a id="nav" href="index.php">Log out</a></li>
                         <li><a id="nav" href="#contact">Contact</a></li>
                         <li><a id="nav" href="#about">About</a></li>
+                        <li><a id="nav" href="reservation.php">Book</a></li>
                         <li><a id="nav" href="#home">Home</a></li>
                         </ul> 
                         
                         </div>    
-                        <div id="logo"><a href="index.php"><img src="img/logo2.png" width="70px" hieght="auto"></a></div> 
+                        <div id="logo"><a href="guest.php"><img src="img/logo2.png" width="70px" hieght="auto"></a></div>                
                         </div>
-                        <a id="login"></a>
                     </div>   
-                    
-                    <div id="aboutbg">
-                    <div style="width:270px; margin:0 auto; margin-top: 100px; margin-bottom: 100px;">   
-                        
-                        <form action="index.php" method="post">
-                            <div id="#aboutparagraph">
-                            
-                            <h3 id="textcolor" style="margin-top: 100px;" ><span><b>Sign in here </b></span></h3>
-                            Username:<br><input type="text" name="username" id = "uname" class="form-control" required/><br  />
-                            Password:<br><input type="password" name="password" id="password" class="form-control" required/><br  />
-                            <input type="submit" name="login" id ="btn-login" value="Sign-in" class="form-control" required  />
-                            <div><center>
-                                <p style="margin-top: 10px;"> Not a member? <a href="register.php">Register here</a></p>
-                                </center>
-                            </div>  
-                            
-                            </div>
-                        </form> 
-                    </div>
-                    </div>
-        
+
+                
                     <div id="reservebg">
                         
                         <center>
@@ -200,6 +153,7 @@ $errors = array();
                                 <p> <h4><b><br><br>Premier Rooms</b></h4>Premier Rooms offer bigger accommodations and supplementing facilities. With a floor area of 35 sqm, additional features include a bath tub and kitchenette, as well as Club Lounge access.safe.<br><br><br><br><br><br><br><br>
                             </div>
                 
+                
                         <br><br><br>
 
                     </div>
@@ -227,7 +181,6 @@ $errors = array();
 
                         </div>
         
-                        
         	<div id="contact" class="container col-lg-12">
 			<div id = "contactparagraph">
 				<h3 id="textcolor" ><span><b>Contact Seda Hotel </b></span></h3>
@@ -291,7 +244,12 @@ $errors = array();
                     </div>
                 </div>	
             </div>
-        </div>     
+        </div>
+        
+		<!--endOfContact-->
+		
+
+
 	</body>
 
 
