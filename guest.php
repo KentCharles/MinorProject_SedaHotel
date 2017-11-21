@@ -110,7 +110,7 @@
                   
                     <div id="NavBar">
                         <ul>
-                        <li style="color: antiquewhite; width: 160px;"><b>Welcome, <?php echo $username ?>!</b></li>
+                        <li style="color: antiquewhite; width: 160px;"><b>Hi, <a href="profile.php"><?php echo $username ?> </a></b></li>
                         <li><a id="nav" href="index.php">Log out</a></li>
                         <li><a id="nav" href="#contact">Contact</a></li>
                         <li><a id="nav" href="#about">About</a></li>
@@ -136,21 +136,22 @@
                                 
                                 <img src="img/deluxe.jpg" width="700px" style="float: left; margin-left: 50px; margin-right: 20px; margin-bottom: 50px;">
                                 
-                                <p> <h4><b><br>Deluxe Rooms</b></h4>Deluxe Rooms are executed in soothing earth tones that evoke a warm and restful ambiance. At 28sqm, each is equipped with a king or twin beds, a 40-inch LED HDTV with cable channels, media panel with HDMI, USB and audio-visual connectivity, complimentary Wi-Fi and broadband internet access, IDD phone with iPod dock, alarm clock, voice mail and radio,coffee and tea making facilities, mini-bar and in-room safe.<br><br><br><br><br><br><br><br>
+                                <p> <h4><b><br>Deluxe Rooms</b><h4><b>PHP 6,800 per room/night</b></h4></h4>Deluxe Rooms are executed in soothing earth tones that evoke a warm and restful ambiance. At 28sqm, each is equipped with a king or twin beds, a 40-inch LED HDTV with cable channels, media panel with HDMI, USB and audio-visual connectivity, complimentary Wi-Fi and broadband internet access, IDD phone with iPod dock, alarm clock, voice mail and radio,coffee and tea making facilities, mini-bar and in-room safe.
+                                <br><br><br><br><br><br><br>
                             </div>
                         
                               <div style="margin-left: 200px; text-align:justify; ">
                                 
                                 <img src="img/clubroom.jpg" width="700px" style="float: right; margin-right: 50px; margin-left: 20px; margin-bottom: 50px;">
                                 
-                                <p> <h4 style="text-align:right;"><b><br><br>Club Rooms</b></h4>Club Rooms offer a range of privileges for discerning travelers. Located on the 10th and 11th floors, they provide access to the Club Lounge where guests enjoy exclusivity and premium service; daily Continental breakfast; all-day refreshments and cocktails; iMac stations; work tables; reading materials; a wide-screen LED HDTV with cable channels; and secretarial assistance.<br><br><br><br><br><br><br><br><br><br><br><br>
+                                <p> <h4 style="text-align:right;"><b><br><br>Club Rooms</b><h4 style="text-align:right;"><b>PHP 7,800 per room/night</b></h4></h4>Club Rooms offer a range of privileges for discerning travelers. Located on the 10th and 11th floors, they provide access to the Club Lounge where guests enjoy exclusivity and premium service; daily Continental breakfast; all-day refreshments and cocktails; iMac stations; work tables; reading materials; a wide-screen LED HDTV with cable channels; and secretarial assistance.<br><br><br><br><br><br><br><br><br>
                             </div>
                         
                             <div style="margin-right: 200px; text-align: justify; ">
                                 
                                 <img src="img/premiere.jpg" width="700px" style="float: left; margin-left: 50px; margin-right: 20px; margin-bottom: 50px;">
                                 
-                                <p> <h4><b><br><br>Premier Rooms</b></h4>Premier Rooms offer bigger accommodations and supplementing facilities. With a floor area of 35 sqm, additional features include a bath tub and kitchenette, as well as Club Lounge access.safe.<br><br><br><br><br><br><br><br>
+                                <p> <h4><b><br><br>Premier Rooms</b><h4><b>PHP 8,800 per room/night</b></h4></h4>Premier Rooms offer bigger accommodations and supplementing facilities. With a floor area of 35 sqm, additional features include a bath tub and kitchenette, as well as Club Lounge access.safe.<br><br><br><br><br><br><br><br>
                             </div>
                 
                 

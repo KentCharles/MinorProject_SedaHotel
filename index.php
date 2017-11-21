@@ -8,7 +8,9 @@ $errors = array();
     if (isset($_POST['login'])) {
         
         $username = trim($_POST['username']);
+        $adminPass = ($_POST['password']);
         $password = md5($_POST['password']);
+        
         
         $_SESSION['username'] = $username;
         
@@ -17,17 +19,35 @@ $errors = array();
         $data = mysqli_fetch_assoc($result);
     
         if(empty($errors)) {
-            
             if($username == $data['username'] && $password == $data['password']) {
-                
+                if(strcmp($data['role'], 'admin') == 0){
+                    header("location: admin1.php");
+                }
+                else{
                 $_SESSION["id"] = $data['id'];
-                header("location: guest.php");
+                header("location: guest.php"); }
             }else {
-            
                 $errors["match_form"] = "Username/Password do not match";
             }
         }
         mysqli_close($link);
+    }
+    
+
+
+    if (isset($_POST['feedback'])) {
+        
+            $name = $_POST['name'];
+            $phone = $_POST['phone'];
+            $email = $_POST['email'];
+            $message = $_POST['message'];
+        
+            $sql = "INSERT INTO messages (name, phone, email, message) 
+            VALUES ('$name', '$phone', '$email', '$message')";
+            
+            mysqli_query($link, $sql); 
+?> <script> alert("MESSAGE SUCCESSFULLY SENT."); </script> <?php
+            header('location: index.php');
     }
 
 ?>
@@ -183,22 +203,24 @@ $errors = array();
                                 
                                 <img src="img/deluxe.jpg" width="700px" style="float: left; margin-left: 50px; margin-right: 20px; margin-bottom: 50px;">
                                 
-                                <p> <h4><b><br>Deluxe Rooms</b></h4>Deluxe Rooms are executed in soothing earth tones that evoke a warm and restful ambiance. At 28sqm, each is equipped with a king or twin beds, a 40-inch LED HDTV with cable channels, media panel with HDMI, USB and audio-visual connectivity, complimentary Wi-Fi and broadband internet access, IDD phone with iPod dock, alarm clock, voice mail and radio,coffee and tea making facilities, mini-bar and in-room safe.<br><br><br><br><br><br><br><br>
+                                <p> <h4><b><br>Deluxe Rooms</b><h4><b>PHP 6,800 per room/night</b></h4></h4>Deluxe Rooms are executed in soothing earth tones that evoke a warm and restful ambiance. At 28sqm, each is equipped with a king or twin beds, a 40-inch LED HDTV with cable channels, media panel with HDMI, USB and audio-visual connectivity, complimentary Wi-Fi and broadband internet access, IDD phone with iPod dock, alarm clock, voice mail and radio,coffee and tea making facilities, mini-bar and in-room safe.
+                                <br><br><br><br><br><br><br>
                             </div>
                         
                               <div style="margin-left: 200px; text-align:justify; ">
                                 
                                 <img src="img/clubroom.jpg" width="700px" style="float: right; margin-right: 50px; margin-left: 20px; margin-bottom: 50px;">
                                 
-                                <p> <h4 style="text-align:right;"><b><br><br>Club Rooms</b></h4>Club Rooms offer a range of privileges for discerning travelers. Located on the 10th and 11th floors, they provide access to the Club Lounge where guests enjoy exclusivity and premium service; daily Continental breakfast; all-day refreshments and cocktails; iMac stations; work tables; reading materials; a wide-screen LED HDTV with cable channels; and secretarial assistance.<br><br><br><br><br><br><br><br><br><br><br><br>
+                                <p> <h4 style="text-align:right;"><b><br><br>Club Rooms</b><h4 style="text-align:right;"><b>PHP 7,800 per room/night</b></h4></h4>Club Rooms offer a range of privileges for discerning travelers. Located on the 10th and 11th floors, they provide access to the Club Lounge where guests enjoy exclusivity and premium service; daily Continental breakfast; all-day refreshments and cocktails; iMac stations; work tables; reading materials; a wide-screen LED HDTV with cable channels; and secretarial assistance.<br><br><br><br><br><br><br><br><br>
                             </div>
                         
                             <div style="margin-right: 200px; text-align: justify; ">
                                 
                                 <img src="img/premiere.jpg" width="700px" style="float: left; margin-left: 50px; margin-right: 20px; margin-bottom: 50px;">
                                 
-                                <p> <h4><b><br><br>Premier Rooms</b></h4>Premier Rooms offer bigger accommodations and supplementing facilities. With a floor area of 35 sqm, additional features include a bath tub and kitchenette, as well as Club Lounge access.safe.<br><br><br><br><br><br><br><br>
+                                <p> <h4><b><br><br>Premier Rooms</b><h4><b>PHP 8,800 per room/night</b></h4></h4>Premier Rooms offer bigger accommodations and supplementing facilities. With a floor area of 35 sqm, additional features include a bath tub and kitchenette, as well as Club Lounge access.safe.<br><br><br><br><br><br><br><br>
                             </div>
+                
                 
                         <br><br><br>
 
@@ -238,18 +260,18 @@ $errors = array();
 			    <div class="row">
 			        <div class="col-md-8">
 			            <div id="panel-heading">
-			                <form>
+			                <form method="post" action="index.php">
 			                <div class="row">
 			                    <div class="col-md-6 ">
 			                        <div class="form-group">
 			                            <label for="name">
 			                                Name</label>
-			                            <input type="text" class="form-control" id="name" placeholder="Enter name" required="required" />
+			                            <input type="text" name="name" class="form-control" id="name" placeholder="Enter name" required="required" />
 			                        </div>
 			                         <div class="form-group">
 			                            <label for="name">
 			                                Contact</label>
-			                            <input type="text" class="form-control" id="name" placeholder="Enter number" required="required" />
+			                            <input type="text" name="phone" class="form-control" id="name" placeholder="Enter number" required="required" />
 			                        </div>
 			                        <div class="form-group">
 			                            <label for="email">
@@ -257,19 +279,19 @@ $errors = array();
 			                            <div class="input-group">
 			                                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
 			                                </span>
-			                                <input type="text" class="form-control" id="email" placeholder="Enter email" required="required" /></div>
+			                                <input type="text" name="email" class="form-control" id="email" placeholder="Enter email" required="required" /></div>
 			                        </div>
 			                    </div>
 			                    <div class="col-md-6">
 			                        <div class="form-group">
 			                            <label for="name">
 			                                Message</label>
-			                            <textarea name="message" id="message" class="form-control" rows="9" cols="25" required="required"
+			                            <textarea name="message" name="messages" id="message" class="form-control" rows="9" cols="25" required="required"
 			                                placeholder="Message"></textarea>
 			                        </div>
 			                    </div>
 			                    <div class="col-md-12">
-			                        <button type="submit" class="btn btn-primary pull-right" id="btn-send">
+			                        <button type="submit" name="feedback" class="btn btn-primary pull-right" id="btn-send">
 			                            Send Message</button>
 			                    </div>
 			                </div>

@@ -5,12 +5,9 @@ $password="";
 $connect_mysql=mysqli_connect($server,$username,$password) or die ("Connection Failed!");
 $mysql_db=mysqli_select_db($connect_mysql, "seda") or die ("Could not Connect to Database");
 
-$query = "SELECT * FROM bookings";
-$result=mysqli_query($connect_mysql, $query) or die("Query Failed : ".mysqli_error());
 
-
-$accounts = "SELECT * FROM accounts where role = 'user'";
-$users=mysqli_query($connect_mysql, $accounts) or die("Query Failed : ".mysqli_error());
+$messages = "SELECT * FROM messages";
+$message=mysqli_query($connect_mysql, $messages) or die("Query Failed : ".mysqli_error());
 ?>
 
 <script>
@@ -48,40 +45,46 @@ $users=mysqli_query($connect_mysql, $accounts) or die("Query Failed : ".mysqli_e
                   <div class="fluid-container" style="padding: 30px; margin-top: 100px; ">
                     <center>
                     <ul class="nav nav-tabs" role="tablist">
-                        <li class="active"><a href="" ><h4 id="textcolor">Users</h4></a></li>
-                        <li style="color: white;"><a href="admin2.php" ><h4 id="textcolor">Pendings</h4></a></li>
-                        <li style="color: white;"><a href="admin5.php" ><h4 id="textcolor">Bookings</h4></a></li>
-                        <li style="color": white;><a href="admin6.php" ><h4 id="textcolor">Rejects</h4></a></li>
+                        <li style="color: white;"><a href="admin1.php" ><h4 id="textcolor">Users</h4></a></li>
+                        <li style="color": white;><a href="admin2.php" ><h4 id="textcolor">Pendings</h4></a></li>
+                        <li style="color": white;><a href="admin5.php" ><h4 id="textcolor">Bookings</h4></a></li>
+                        <li style="color: white;" ><a href="admin6.php" ><h4 id="textcolor">Rejects</h4></a></li>
                         <li style="color: white;"><a href="admin3.php" ><h4 id="textcolor">Occupied</h4></a></li>
-                        <li style="color: white;"><a href="admin4.php" ><h4 id="textcolor">Rooms</h4></a></li>
-                        <li style="color: white;"><a href="admin7.php" ><h4 id="textcolor">Feedbacks</h4></a></li>
-                        
+                        <li style="color: white;" ><a href="admin4.php" ><h4 id="textcolor">Rooms</h4></a></li>
+                        <li class="active" ><a href="admin7.php" ><h4 id="textcolor">Feedbacks</h4></a></li>
                     </ul>
                     </center>
                 </div>
                 
                     <div class="tab-content" style="background-color: beige; color: #170a02;">
                       <div role="tabpanel" class="tab-pane fade in active" id="profile" style="overflow: auto; padding: 0 55px;">
-                        <table id="table" class="table table-hover">
-                            <thead>
-                              <tr id="panel-heading">
-                                <th>Username</th>
-                                <th>Email</th>
-                                <th colspan=2>Action</th>
-                              </tr>
+                        <table id="table" class="table table-hover">  
+                            <thead> 
+                              <tr id="panel-heading" style="font-size: 16spx;">
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Message</th>
+                                       
+                                    </tr>
                             </thead>
                             <tbody>
-                               <?php while($rows=mysqli_fetch_array($users)) { ?>
+                              <?php while($rows=mysqli_fetch_array($message)) { ?>
                                     <tr> 
-                                        <td><?php echo $rows['username'] ?></td>
+                                        <td><?php echo $rows['name'] ?></td>
                                         <td><?php echo $rows['email'] ?></td>
-                                        <td><?php echo '<a href="deleteUsers.php?id='.$rows['id'].'">Delete</a>' ?></td>
+                                        <td><?php echo $rows['phone'] ?></td>
+                                        <td><?php echo $rows['message'] ?></td>
                                             <?php } ?>
-
                                     </tr>
                             </tbody>
-                          </table> 
-                      </div>
+                        </table>
+                    </div>
+                 <div>
+		  	           
+                    </div>   
+                
+                    
                     </div>
                 </div>
             </div>

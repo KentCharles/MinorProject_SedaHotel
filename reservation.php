@@ -15,6 +15,7 @@ include('config.php');
     $meal=$_POST['meal'];
     print_r($_POST);
     
+        
     $_SESSION['troom'] = $troom;
     $_SESSION['cin'] = $cin;
     $_SESSION['cout'] = $cout;
@@ -69,8 +70,8 @@ include('config.php');
                                                             <select name="troom" id ="room_type" class="form-control" onchange ="getType(this.value)" required >
                                                                 <option value selected ></option>                    
                                                                 <option value="DELUXE">DELUXE ROOM</option>
-                                                                <option value="PREMEIRE">PREMEIRE ROOM</option>
                                                                 <option value="CLUB HOUSE">CLUB HOUSE</option>
+                                                                <option value="PREMEIRE">PREMEIRE ROOM</option>
                                                             </select>
                                                   </div>
                                               <div class="form-group">
@@ -125,7 +126,7 @@ include('config.php');
                                               </div>
                                             
                                             <div class = "form-group">
-                                                    <label>TOTAL AMOUNT TO PAY (Php.)</label>
+                                                    <label><h4>Total amount to pay: PHP</h4></label>
                                                     <input type="text" name="roomprice" id="total"  size="5px" readonly="" />
                                             </div>  
                                         
@@ -198,6 +199,7 @@ function getTotal(){
     else if(roomType == "CLUB HOUSE"){
         var numDays= GetDays();
         document.getElementById('total').value = (roomNum * 7800 * numDays + (numDays * planPrice));
+        total = document.getElementById('total');
         }
     }
 
@@ -229,4 +231,3 @@ var numDays;
         }
  
 </script>
-

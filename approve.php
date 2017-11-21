@@ -2,7 +2,7 @@
 <?php
     include('config.php');
     $currentID = 0;
-    
+    $username = $_SESSION['username'];
     if(!empty($_GET['id'])){
         
         $id = $_GET['id'];
@@ -21,7 +21,7 @@
         $cin = $select_data['cin'];
         $cout = $select_data['cout'];
         
-        $sql = "INSERT INTO approve (id, fname, email, phone, troom, nroom, meal, cin, cout, status) values ($id1, '$fname', '$email', '$phone', '$phone', '$nroom', '$meal', '$cin' , '$cout', 'ACCEPTED')";
+        $sql = "INSERT INTO approve (id, fname, email, phone, troom, nroom, meal, cin, cout, status, username) values ($id1, '$fname', '$email', '$phone', '$phone', '$nroom', '$meal', '$cin' , '$cout', 'ACCEPTED', '$username')";
         
         mysqli_query($link, $sql);
         
