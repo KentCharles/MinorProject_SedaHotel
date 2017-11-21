@@ -42,8 +42,8 @@ if(isset($_POST['register'])){
         
             if (count($errors) == 0){
                 $password = md5($password_1);
-                $sql = "INSERT INTO accounts (username, email, password)
-                        VALUES ('$username', '$email', '$password')";
+                $sql = "INSERT INTO accounts (username, email, password, role)
+                        VALUES ('$username', '$email', '$password', 'user')";
                 mysqli_query($link, $sql);
             }
             header("location: index.php");

@@ -11,9 +11,12 @@ session_start();
     $phone = $_SESSION['phone'];
     $nroom = $_SESSION['nroom'];
     $meal = $_SESSION['meal'];
+    $username = $_SESSION['username'];
     $fixRoom = $nroom;
         
         if(isset($_POST['c_submit'])){
+            
+            
             
             if(strcmp($troom, "DELUXE")==0) {
     		
@@ -39,8 +42,8 @@ session_start();
 						$room_num++;
 					}
 				}
-				$sql = "INSERT INTO availability (id, room_num, check_in, check_out, fname) VALUES 
-						(1, '$room_num', '$cin', '$cout', '$fname')";
+				$sql = "INSERT INTO availability (id, room_num, check_in, check_out, fname, username) VALUES 
+						(1, '$room_num', '$cin', '$cout', '$fname', '$username')";
 				mysqli_query($link, $sql);
 				header("location: guest.php");
 			}
@@ -52,8 +55,8 @@ session_start();
 								$room_num++;
 							}
 						}
-						$sql = "INSERT INTO availability (id, room_num, check_in, check_out, fname) VALUES 
-								(1, '$room_num', '$cin', '$cout', '$fname')";
+						$sql = "INSERT INTO availability (id, room_num, check_in, check_out, fname, username) VALUES 
+								(1, '$room_num', '$cin', '$cout', '$fname', '$username')";
 						mysqli_query($link, $sql);
 						$rooms[] = $room_num;
 						$nroom--;
@@ -90,8 +93,8 @@ session_start();
 						$room_num++;
 					}
 				}
-				$sql = "INSERT INTO availability (id, room_num, check_in, check_out, fname) VALUES 
-						(3, '$room_num', '$cin', '$cout', '$fname')";
+				$sql = "INSERT INTO availability (id, room_num, check_in, check_out, fname, username) VALUES 
+						(3, '$room_num', '$cin', '$cout', '$fname', '$username')";
 				mysqli_query($link, $sql);
 				header("location: guest.php");
 			}
@@ -103,8 +106,8 @@ session_start();
 								$room_num++;
 							}
 						}
-						$sql = "INSERT INTO availability (id, room_num, check_in, check_out, fname) VALUES 
-								(3, '$room_num', '$cin', '$cout', '$fname')";
+						$sql = "INSERT INTO availability (id, room_num, check_in, check_out, fname, username) VALUES 
+								(3, '$room_num', '$cin', '$cout', '$fname', '$username')";
 						mysqli_query($link, $sql);
 						$rooms[] = $room_num;
 						$nroom--;
@@ -141,8 +144,8 @@ session_start();
 						$room_num++;
 					}
 				}
-				$sql = "INSERT INTO availability (id, room_num, check_in, check_out, fname) VALUES 
-						(2, '$room_num', '$cin', '$cout', '$fname')";
+				$sql = "INSERT INTO availability (id, room_num, check_in, check_out, fname, username) VALUES 
+						(2, '$room_num', '$cin', '$cout', '$fname', '$username')";
 				mysqli_query($link, $sql);
 				header("location: guest.php");
 			}
@@ -154,8 +157,8 @@ session_start();
 								$room_num++;
 							}
 						}
-						$sql = "INSERT INTO availability (id, room_num, check_in, check_out) VALUES 
-								(2, '$room_num', '$cin', '$cout')";
+						$sql = "INSERT INTO availability (id, room_num, check_in, check_out, fname,  username) VALUES 
+								(2, '$room_num', '$cin', '$cout', '$fname', '$username')";
 						mysqli_query($link, $sql);
 						$rooms[] = $room_num;
 						$nroom--;
@@ -169,8 +172,8 @@ session_start();
 			
 		}		
            
-            $sql = "INSERT INTO bookings (troom, cin, cout, fname, email, phone, nroom, meal) 
-            VALUES ('$troom', '$cout', '$cin', '$fname', '$email', '$phone', '$fixRoom', '$meal')";
+            $sql = "INSERT INTO bookings (troom, cin, cout, fname, email, phone, nroom, meal, username) 
+            VALUES ('$troom', '$cout', '$cin', '$fname', '$email', '$phone', '$fixRoom', '$meal', '$username')";
             
             mysqli_query($link, $sql); 
             

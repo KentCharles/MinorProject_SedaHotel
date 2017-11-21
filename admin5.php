@@ -53,6 +53,7 @@ $room=mysqli_query($connect_mysql, $rooms) or die("Query Failed : ".mysqli_error
                         <li style="color: white;"><a href="admin6.php" ><h4 id="textcolor">Rejects</h4></a></li>
                         <li style="color": white;><a href="admin3.php" ><h4 id="textcolor">Occupied</h4></a></li>
                         <li style="color: white;"><a href="admin4.php" ><h4 id="textcolor">Rooms</h4></a></li>
+                        <li style="color: white;"><a href="admin7.php" ><h4 id="textcolor">Feedbacks</h4></a></li>
                     </ul>
                     </center>
                 </div>

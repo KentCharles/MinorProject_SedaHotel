@@ -57,6 +57,7 @@ $users=mysqli_query($connect_mysql, $accounts) or die("Query Failed : ".mysqli_e
                         <li style="color": white;><a href="admin6.php" ><h4 id="textcolor">Rejects</h4></a></li>
                         <li style="color: white;"><a href="admin3.php" ><h4 id="textcolor">Occupied</h4></a></li>
                         <li style="color: white;"><a href="admin4.php" ><h4 id="textcolor">Rooms</h4></a></li>
+                        <li style="color: white;"><a href="admin7.php" ><h4 id="textcolor">Feedbacks</h4></a></li>
                     </ul>
                     </center>
                 </div>
@@ -90,7 +91,7 @@ $users=mysqli_query($connect_mysql, $accounts) or die("Query Failed : ".mysqli_e
                             <td><?php echo $rows['cin'] ?></td>
                             <td>
                                 <a href="approve.php?id=<?php echo $rows['id']; ?>">Accept</a>
-                                <a href="delete .php?id=<?php echo $rows['id']; ?>">Reject</a>
+                                <a href="delete.php?id=<?php echo $rows['id']; ?>">Reject</a>
                             </td>
                                 <?php } ?>
 
